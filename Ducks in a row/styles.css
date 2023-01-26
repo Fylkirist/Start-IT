@@ -1,0 +1,15 @@
+.imgContainer{
+    border: solid black 2px;
+    width: 300px;
+    height: 300px;
+}
+#imgHolder{
+    width: 1000px;
+    align-content: left;
+    display: flex;
+    flex-direction: left;
+}
+.duckPics{
+    width: 300px;
+    height: 300px;
+}

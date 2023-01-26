@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Kalkulator</title>
+    <style type="text/css">
+        div.calcElem {
+            float: left;
+            background-color: beige;
+            width: 50px;
+            height: 50px;
+            padding: 10px;
+            margin: 10px;
+            text-align: center;
+            vertical-align: middle;
+            font-family: helvetica;
+            font-size: 200%;
+            border: #bbbbaa solid 4px;
+            border-radius: 10px;
+        }
+
+            div.resultBox {
+                width: 344px;
+                text-align: right;
+            }
+
+            div.firstInRow {
+                clear: left;
+            }
+    </style>
+</head>
+<body>
+    <div id="calculator">
+    </div>
+
+<script type="text/javascript">
+    //model
+
+    var resultBox = ""
+
+    //view
+
+    const calcElem = document.getElementById("calculator")
+    renderCalulator()
+    function renderCalulator(){
+        calcElem.innerHTML=`<div id="resultBox" class="resultBox calcElem" id="screen">${resultBox}</div>
+        <div class="firstInRow calcElem" onclick="addCharacter(7)">7</div>
+        <div class="calcElem" onclick="addCharacter(8)">8</div>
+        <div class="calcElem" onclick="addCharacter(9)">9</div>
+        <div class="calcElem" onclick="addCharacter('÷')">÷</div>
+
+        <div class="firstInRow calcElem" onclick="addCharacter(4)">4</div>
+        <div class="calcElem" onclick="addCharacter(5)">5</div>
+        <div class="calcElem" onclick="addCharacter(6)">6</div>
+        <div class="calcElem" onclick="addCharacter('×')">×</div>
+        <div class="firstInRow calcElem" onclick="addCharacter(1)">1</div>
+        <div class="calcElem" onclick="addCharacter(2)">2</div>
+        <div class="calcElem" onclick="addCharacter(3)">3</div>
+        <div class="calcElem" onclick="addCharacter('-')">-</div>
+        <div class="firstInRow calcElem" onclick="addCharacter(0)">0</div>
+        <div class="calcElem" onclick="clearResult();">C</div>
+        <div class="calcElem" onclick="calculate()">=</div>
+        <div class="calcElem" onclick="addCharacter('+')">+</div>`
+    }
+
+    //controller
+
+    function clearResult() {
+        resultBox = '';
+        renderCalulator();
+    }
+
+    function addCharacter(x) {
+        resultBox += x;
+        renderCalulator();
+    }
+
+    function calculate() {
+        var calculation = resultBox
+            .replace('×', '*')
+            .replace('÷', '/');
+        resultBox = `${eval(calculation)}`;
+        renderCalulator();
+    }
+</script>
+</body>
+</html>
+

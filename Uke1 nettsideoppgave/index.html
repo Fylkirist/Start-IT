@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Andreas</title>
+    <style>
+      @keyframes buttonanim {
+        0% {
+          background-color: blue;
+        }
+
+        10% {
+          background-color: royalblue;
+        }
+
+        20% {
+          background-color: blueviolet;
+        }
+
+        30% {
+          background-color: violet;
+        }
+
+        40% {
+          background-color: purple;
+        }
+
+        50% {
+          background-color: violet;
+        }
+
+        60% {
+          background-color: blueviolet;
+        }
+
+        70% {
+          background-color: royalblue;
+        }
+
+        80% {
+          background-color: blue;
+        }
+
+        90% {
+          background-color: blue;
+        }
+      }
+
+      body {
+        background-color: lightblue;
+      }
+
+      #bilde {
+        position: absolute;
+        left: 275px;
+        top: 60px;
+      }
+
+      #listebakgrunn {
+        color: black;
+        padding-left: 20px;
+        width: 400px;
+      }
+      .knappsvart{
+        background-color: black;
+      }
+      .knapphvit{
+        background-color: white;
+      }
+
+      #changecolour {
+        width: 150px;
+        height: 50px;
+        position: absolute;
+        top: 300px;
+        left: 600px;
+        border: 5px, green;
+        border-radius: 30px;
+        background-color: blue;
+        animation-name: buttonanim;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+      }
+    </style>
+  </head>
+
+  <body id="bakgrunn">
+    <div id="listebakgrunn">
+      <h1 id="overskrift">Hei, jeg heter Andreas.</h1>
+      <h2>Mine fritidssyssler er:</h2>
+      <li>Programmering</li>
+      <li>Musikk</li>
+      <li>Gaming</li>
+    </div>
+    <img title="meg" id="bilde" src="Capture.PNG" height="200" width="200" />
+    <button id="changecolour" onclick="endrefarge()">
+      Tilfeldig fargekombo
+    </button>
+  </body>
+  <script>
+
+    const knappen = document.getElementById("changecolour");
+    let forrigefarge = 2;
+    const fargekombinasjoner = {
+      0: { red: "green" },
+      1: { "#1c1c1c": "#cccccc" },
+      2: { lightblue: "black" },
+      3: { "#ebfa96": "#17abb7" },
+    };
+    function endrefarge() {
+      let fargevalg = forrigefarge;
+      while (fargevalg == forrigefarge) {
+        fargevalg = Math.floor(Math.random() * 4);
+      }
+      document.getElementById("bakgrunn").style.backgroundColor = Object.keys(fargekombinasjoner[fargevalg])[0];
+      document.getElementById("listebakgrunn").style.color = Object.values(fargekombinasjoner[fargevalg])[0];
+      forrigefarge = fargevalg;
+    }
+    let knappy = 300;
+    let knappx = 600;
+    knappen.style.left = `${knappx}px`;
+    knappen.style.top = `${knappy}px`;
+
+
+    function flyttknapp(mousey, mousex) {
+      if (mousey < knappy+25) {
+          knappy = knappy + Math.random() * 5;
+          if (knappy > window.innerHeight - knappen.offsetHeight) 
+          {
+            knappy = window.innerHeight - knappen.offsetHeight;
+          }
+      }
+      else {
+        knappy = knappy - Math.random() * 5;
+        if (knappy < 0) 
+        {
+            knappy = 0;
+        }
+      }
+      if (mousex < knappx+75) {
+        knappx = knappx + Math.random() * 5;
+        if (knappx > window.innerWidth - knappen.offsetWidth) 
+        { 
+            knappx = window.innerWidth - knappen.offsetWidth;
+        }
+      } 
+      else {
+        knappx = knappx - Math.random() * 5;
+        if (knappx < 0) 
+        { 
+            knappx = 0;
+        }
+      }
+    knappen.style.left = `${knappx}px`;
+    knappen.style.top = `${knappy}px`;
+}
+
+    document.addEventListener("mousemove", function (event) {
+      let mousex = event.clientX;
+      let mousey = event.clientY;
+      let distance = Math.floor(Math.sqrt(Math.pow((mousex - (knappx+75)), 2) + Math.pow((mousey - (knappy+25)), 2)))
+      console.log(distance)
+      if (distance < 150) {
+        flyttknapp(mousey,mousex)
+      }
+    });
+  </script>
+</html>

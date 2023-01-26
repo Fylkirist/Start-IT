@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age predictor</title>
+    <style>
+        #agePredictor {
+            width: 500px;
+            margin: 0 auto;
+            font-family: Arial, sans-serif;
+            }
+
+        #uibox {
+            padding: 20px;
+            background-color: #f2f2f2;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            margin-right: 10px;
+            width: 100px;
+        }
+
+        #yearLabel{
+            display: inline-block;
+        }
+
+        #nameLabel{
+            display:inline
+        }
+
+        input[type="text"] {
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            flex: 1;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        #predictedAgeBox {
+            background-color: #f2f2f2;
+            padding: 10px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-weight: bold;
+        }  
+
+        #actualAgeBox {
+            background-color: #f2f2f2;
+            padding: 10px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        .container{
+            width: 400px;
+            display: flex;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="agePredictor"></div>
+</body>
+<script>
+    let agePrediction;
+    let age;
+    let nameInput;
+    let birthYear;
+
+    async function getAgePrediction(name){
+        console.log(name)
+        let response = await fetch(`https://api.agify.io?name=${name}`);
+        let data = await response.json();
+            return data["age"];
+    }
+
+    function calculateage(birthYear){
+        if(birthYear){
+        return new Date().getFullYear()-birthYear
+        }
+    }
+
+    const ageApp = document.getElementById("agePredictor")
+    function renderElement(){
+        ageApp.innerHTML=`
+        <div id = "uibox">
+            <div>Skriv navn og fødselsår under, så gjetter agify alderen din!</div>
+            <br>
+            <div class ="container">
+                <label id="naveLabel" for="nameInput">Navn</label>
+                <input type="text" id="nameInput"></input>
+            </div>
+            <div class ="container">
+                <label id="yearLabel" for="yearInput">Fødselsår</label>
+                <input type="text" id="yearInput"></input>
+            </div>
+            <button id="checkButton">Submit</button>
+        </div>
+        `
+        if(agePrediction){
+            document.getElementById("uibox").innerHTML+=`<div id="predictedAgeBox">Agify tror du er: ${agePrediction} år gammel.</div>`
+        }
+        if(age){
+            document.getElementById("uibox").innerHTML+=`<div id="actualAgeBox">Du er ${age} år gammel.</div>`
+        }
+        const submitButton = document.getElementById("checkButton")
+        submitButton.addEventListener("click", async ()=>{
+        agePrediction = await getAgePrediction(document.getElementById("nameInput").value);
+        age = calculateage(document.getElementById("yearInput").value);
+        renderElement();
+        })
+    }
+
+    renderElement();
+    
+</script>
+</html>

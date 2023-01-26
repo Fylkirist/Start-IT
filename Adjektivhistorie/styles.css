@@ -1,0 +1,41 @@
+.dropDownList{
+    display: none;
+}
+.list{
+    position: absolute;
+    border: solid black 1px;
+    background-color: white;
+    z-index: 1;
+    width: auto;
+    height: auto;
+}
+.listBox{
+    position:relative;
+    background-color: inherit;
+    width: 120px;
+    height: auto;
+    text-align: center;
+    white-space: nowrap;
+    border: solid black 1px;
+}
+.listBox:hover{
+    background-color: rgb(66, 66, 245);
+}
+span{
+    text-decoration: underline;
+}
+span:hover{
+    color: rgb(66, 66, 245);
+}
+#app{
+    max-width: 800px;
+    text-shadow: 1px;
+    border: dashed 3px black;
+    padding: 20px;
+    background-color: white;
+    font-size: large;
+}
+body{
+    background: radial-gradient(circle at top left, #ffd700, #00bfff);
+    height: 1080px;
+}
