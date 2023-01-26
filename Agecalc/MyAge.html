@@ -90,7 +90,7 @@
             return data["age"];
     }
 
-    function calculateage(birthYear){
+    function calculateAge(birthYear){
         if(birthYear){
         return new Date().getFullYear()-birthYear
         }
@@ -122,7 +122,7 @@
         const submitButton = document.getElementById("checkButton")
         submitButton.addEventListener("click", async ()=>{
         agePrediction = await getAgePrediction(document.getElementById("nameInput").value);
-        age = calculateage(document.getElementById("yearInput").value);
+        age = calculateAge(document.getElementById("yearInput").value);
         renderElement();
         })
     }
