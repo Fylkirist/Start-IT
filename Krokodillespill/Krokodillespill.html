@@ -9,6 +9,11 @@
         body{
             background:aqua;
         }
+        #crocInput{
+            width: 30px;
+            text-align: center;
+
+        }
         #krokodillen{
             background-color: greenyellow;
             width: max-content;
@@ -37,38 +42,38 @@
     </div>
 </body>
 <script>
-    let state = [0,"=",0];
+    let score = 0
+    let state = [0,0];
+    let crocMouth;
     
     const croc = document.getElementById("krokodillen")
     function renderCroc(){
-        croc.innerHTML=`<div class="crocChild">${state[0]}<div onclick="roll(0)" class="crocButton">Reroll this</div></div><div class="crocChild">${state[1]}<div onclick="roll(1)" class="crocButton">Reroll both</div></div></div><div class="crocChild">${state[2]}<div onclick="roll(2)" class="crocButton">Reroll this</div></div></div>`
+        croc.innerHTML=`<div class="crocChild">${state[0]}
+        </div><div class="crocChild"><div>score: ${score}</div><input placeholder=">=<" id="crocInput" type = "text" oninput="crocMouth=this.value"></input><div onclick="roll()" class="crocButton">Reroll</div><div onclick="evaluateInput()" class="crocButton">Submit</div><div onclick="reset()" class="crocButton">Reset</div></div></div><div class="crocChild">${state[1]}</div></div>`
     }
     renderCroc();
 
-    function evaluateState(){
-        if(state[0]==state[2]){
-            return "="
-        }
-        else if(state[0]>state[2]){
-            return ">"
+    function evaluateInput(){
+        if(state[0]>state[1] && crocMouth==">" || state[0]<state[1] && crocMouth=="<" || state[0]==state[1] && crocMouth=="="){
+            score++;
+            renderCroc();
+            roll();
         }
         else{
-            return "<"
+            score--;
+            renderCroc();
         }
     }
 
-    function roll(index){
-        if(index == 1){
-            state[0]=Math.floor(Math.random()*10)
-            state[2]=Math.floor(Math.random()*10)
-            state[1] = evaluateState();
-            renderCroc();
-        }
-        else{
-            state[index]=Math.floor(Math.random()*10)
-            state[1] = evaluateState();
-            renderCroc();
-        }
+    function roll(){
+        state[0]=Math.floor(Math.random()*10)
+        state[1]=Math.floor(Math.random()*10)
+        renderCroc();
+    }
+    function reset(){
+        score = 0
+        state = [0,0];
+        renderCroc()
     }
 </script>
 </html>
