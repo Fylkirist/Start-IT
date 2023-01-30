@@ -48,8 +48,19 @@
     
     const croc = document.getElementById("krokodillen")
     function renderCroc(){
-        croc.innerHTML=`<div class="crocChild">${state[0]}
-        </div><div class="crocChild"><div>score: ${score}</div><input placeholder=">=<" id="crocInput" type = "text" oninput="crocMouth=this.value"></input><div onclick="roll()" class="crocButton">Reroll</div><div onclick="evaluateInput()" class="crocButton">Submit</div><div onclick="reset()" class="crocButton">Reset</div></div></div><div class="crocChild">${state[1]}</div></div>`
+        croc.innerHTML=
+            `<div class="crocChild">${state[0]}
+                </div>
+                    <div class="crocChild">
+                        <div>score: ${score}</div>
+                        <input placeholder=">=<" id="crocInput" type = "text" oninput="crocMouth=this.value">
+                        </input><div onclick="roll()" class="crocButton">Reroll</div>
+                        <div onclick="evaluateInput()" class="crocButton">Submit</div>
+                        <div onclick="reset()" class="crocButton">Reset</div>
+                    </div>
+                </div>
+            <div class="crocChild">${state[1]}</div>
+        </div>`
     }
     renderCroc();
 
