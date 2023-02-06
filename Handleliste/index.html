@@ -22,8 +22,8 @@
 
     function renderListItems(){
         let buffer = ``
-        for(let item of listItems){
-            buffer+=`<li>${item}<button onclick="removeItem('${item}')">X</button></li>`
+        for(i=0; i<listItems.length; i++){
+            buffer+=`<li>${listItems[i]}<button onclick="removeItem(${i})">X</button><button onclick="changeItem(${i})">endre</button></li>`
         }
         return buffer
     }
@@ -31,18 +31,23 @@
     function addListItem(){
         if(inputField!=""){
             listItems.push(inputField)
+            inputField=""
             renderApp()
         }
     }
 
-    function removeItem(elem){
-        for(i=0;i<listItems.length;i++){
-            if(listItems[i]==elem){
-                listItems.splice(i,1)
-                renderApp()
-                return
-            }
+    function removeItem(index){
+        listItems.splice(index,1)
+        renderApp()
+    }
+    
+    function changeItem(index){
+        if(inputField!=""){
+        listItems[index]=inputField
+        inputField=""
+        renderApp()
         }
     }
+
 </script>
 </html>
