@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handleliste</title>
+</head>
+<body>
+    <div id="app"></div>
+</body>
+<script>
+    const app = document.getElementById("app");
+
+    let listItems = []
+    let inputField;
+
+    renderApp()
+    function renderApp(){
+        app.innerHTML=`<h1>Handleliste:</h1><ul>${renderListItems()}</ul><input type="text" oninput="inputField=this.value"></input><button onclick="addListItem()">legg til</button>`    
+    }
+
+    function renderListItems(){
+        let buffer = ``
+        for(let item of listItems){
+            buffer+=`<li>${item}<button onclick="removeItem('${item}')">X</button></li>`
+        }
+        return buffer
+    }
+
+    function addListItem(){
+        if(inputField!=""){
+            listItems.push(inputField)
+            renderApp()
+        }
+    }
+
+    function removeItem(elem){
+        for(i=0;i<listItems.length;i++){
+            if(listItems[i]==elem){
+                listItems.splice(i,1)
+                renderApp()
+                return
+            }
+        }
+    }
+</script>
+</html>
