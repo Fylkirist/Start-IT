@@ -17,13 +17,22 @@
 
     renderApp()
     function renderApp(){
-        app.innerHTML=`<h1>Handleliste:</h1><ul>${renderListItems()}</ul><input type="text" oninput="inputField=this.value"></input><button onclick="addListItem()">legg til</button>`    
+        app.innerHTML=`
+        <h1>Handleliste:</h1>
+        <ul>${renderListItems()}</ul>
+        <input type="text" oninput="inputField=this.value" onchange="addListItem()">
+        </input><button onclick="addListItem()">legg til</button>`    
     }
 
     function renderListItems(){
         let buffer = ``
         for(i=0; i<listItems.length; i++){
-            buffer+=`<li>${listItems[i]}<button onclick="removeItem(${i})">X</button><button onclick="changeItem(${i})">endre</button></li>`
+            buffer+=
+            `<li>
+                ${listItems[i]}
+                <button onclick="removeItem(${i})">X</button>
+                <button onclick="changeItem(${i})">endre</button>
+            </li>`
         }
         return buffer
     }

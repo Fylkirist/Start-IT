@@ -1,0 +1,137 @@
+body {
+    font-family: Arial, sans-serif;
+  }
+  
+#app {
+    width: 80%;
+    margin: 0 auto;
+}
+  
+#topBanner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #333;
+    color: #fff;
+    margin-bottom: 40px;
+}
+#pollContainer, #settingsPollContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+  
+.pollElem, .settingsPollElem {
+    width: 100%;
+    background-color: #f2f2f2;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+  
+.pollButtonContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+  
+.pollButtonContainer{
+    margin: 10px;
+    padding: 10px 20px;
+    color: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+}
+  
+#settingsPollContainer ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+  
+#settingsPollContainer ul li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+  
+#settingsHeaderContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+}
+
+#settingsHeaderContainer{
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+#newQuestionInput {
+    width: 50%;
+    height: 30px;
+    font-size: 1em;
+    padding: 5px;
+    margin-bottom: 20px;
+}
+
+#newQuestionInput:focus {
+    outline: none;
+    border: 1px solid blue;
+}
+
+#resultElementContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.resultContainerElem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.resultElemHeader {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.resultGraphContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 300px;
+    border: solid black 1px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.resultsGraphBar {
+    background-color: rgb(0, 204, 255);
+    margin-bottom: 10px;
+}
+
+.resultGraphContainer{
+    margin-bottom: 10px;
+}
+
+.pollButton:active{
+    transform: translateY(2px);
+    box-shadow: 0 3px #666;
+}
+.pollButton{
+    box-shadow: 0 5px #666;
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+}

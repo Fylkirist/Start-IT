@@ -1,0 +1,1 @@
+//Function for displaying and hiding poll results
